@@ -16,13 +16,13 @@ In fact, the routing methods can have more than one callback function as argumen
 
 ```js
 // Basic route example
-var express = require('express')
-var app = express()
+var express = require('express');
+var app = express();
 
 // respond with "hello world" when a GET request is made to the homepage
 app.get('/', function (req, res) {
   res.send('hello world')
-})
+});
 ```
 
 ___
@@ -34,18 +34,18 @@ A route method is derived from one of the HTTP methods, and is attached to an in
 The following example shows routes that are defined for the `GET` and the `POST` methods to the root of the app.
 
 ```js
-var express = require('express')
-var app = express()
+var express = require('express');
+var app = express();
 
 // GET method route
 app.get('/', function (req, res) {
   res.send('GET request to the homepage')
-})
+});
 
 // POST method route
 app.post('/', function (req, res) {
   res.send('POST request to the homepage')
-})
+});
 ```
 
 ___
@@ -62,24 +62,27 @@ Examples:
 ```js
 // String based route path
 app.get('/about', function (req, res) {
-  res.send('about')
-})
+  res.send('about');
+});
+
 //  This route path will match requests to /about.
 ```
 
 ```js
 // String pattern route path
 app.get('/ab+cd', function (req, res) {
-  res.send('ab+cd')
-})
+  res.send('ab+cd');
+});
+
 //  This route path will match abcd, abbcd, abbbcd, and so on.
 ```
 
 ```js
 // Regular expression route path
 app.get(/.*fly$/, function (req, res) {
-  res.send('/.*fly$/')
-})
+  res.send('/.*fly$/');
+});
+
 //  This route path will match butterfly and dragonfly, but not butterflyman, dragonflyman, and so on.
 ```
 
@@ -87,7 +90,23 @@ ___
 
 ### Route Parameters
 
+Route parameters are named URL segments that are used to capture the values specified at their position in the URL. 
 
+The captured values are populated in the `req.params` object, with the name of the route parameter specified in the path as their respective keys.
+
+```
+Route path: /users/:userId/books/:bookId
+Request URL: http://localhost:3000/users/34/books/8989
+req.params: { "userId": "34", "bookId": "8989" }
+```
+
+To define routes with route parameters, simply specify the route parameters in the path of the route as shown below.
+
+```js
+app.get('/users/:userId/books/:bookId', function (req, res) {
+  res.send(req.params)
+});
+```
 
 
 
@@ -101,6 +120,18 @@ ___
 
 ### Response Methods
 
+`res.end()` - End the response process.
 
+`res.json()` - Send a JSON response.
+
+`res.redirect()` - Redirect a request.
+
+`res.render()` - Render a view template.
+
+`res.send()` - Send a response of various types.
+
+`res.sendFile()` - Send a file as an octect stream
+
+`res.sendStatus(`) - Set the response status code and send it as a string in the response body.
 
 
