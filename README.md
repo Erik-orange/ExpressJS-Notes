@@ -108,17 +108,40 @@ app.get('/users/:userId/books/:bookId', function (req, res) {
 });
 ```
 
-
-
 ___
 
 ### Route Handlers
 
+You can provide multiple callback functions that behave like middleware to handle a request.
 
+Route handlers can be in the form of a function, an array of functions, or combinations of both.
+
+```js
+// An array of callback functions to handle the route '/example/c'.
+var funcA = function (req, res, next) {
+  console.log('funcA');
+  next();
+};
+
+var funcB = function (req, res, next) {
+  console.log('funcB');
+  next();
+};
+
+var funcC = function (req, res) {
+  res.send('Hello from funcC!');
+}
+
+app.get('/example/c', [funcA, funcB, funcC]);
+```
 
 ___
 
 ### Response Methods
+
+The following methods on the response object, (`res`), can send a response to the client, and terminate the request-response cycle. 
+
+If none of these methods are called from a route handler, the client request will be left hanging.
 
 `res.end()` - End the response process.
 
