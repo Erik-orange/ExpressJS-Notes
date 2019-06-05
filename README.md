@@ -50,7 +50,7 @@ app.post('/', function (req, res) {
 
 ___
 
-#### Route Paths
+### Route Paths
 
 Route paths, in combination with a request method, define the endpoints at which requests can be made. 
 
