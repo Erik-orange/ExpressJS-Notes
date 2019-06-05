@@ -4,7 +4,7 @@ ___
 
 ## Routing
 
-`Routing` refers to how an application’s endpoints (URIs) respond to client requests.
+`Routing` refers to determining how an application responds to a client request to a particular endpoint, which is a URI (or path) and a specific HTTP request method (GET, POST, and so on).
 
 You define routing using methods of the Express app object that correspond to HTTP methods.
 
@@ -12,7 +12,14 @@ These routing methods specify a callback function (sometimes called “handler f
 
 In other words, the application “listens” for requests that match the specified route(s) **and** method(s), and when it detects a match, it calls the specified callback function.
 
-In fact, the routing methods can have more than one callback function as arguments. (Must provide the `next` argument and call the `next()` function.)
+Each route can have one or more handler functions, which are executed when the route is matched. (Must provide the `next` argument and call the `next()` function.)
+
+Route definition takes the following structure:  `app.METHOD(PATH, HANDLER)`
+  Where:
+    `app` is an instance of express.
+    `METHOD` is an HTTP request method, in lowercase.
+    `PATH` is a path on the server.
+    `HANDLER` is the function executed when the route is matched.
 
 ```js
 // Basic route example
@@ -156,5 +163,29 @@ If none of these methods are called from a route handler, the client request wil
 `res.sendFile()` - Send a file as an octect stream
 
 `res.sendStatus(`) - Set the response status code and send it as a string in the response body.
+
+___
+
+### Simple ExpressJS Server
+
+```js
+const express = require('express');
+const app = express();
+const port = 3000;
+
+app.get('/', (req, res) => res.send('Hello World!'));
+
+app.listen(port, () => console.log(`Example app listening on port ${port}!`));
+```
+
+___
+
+### Serving Static Files In ExpressJS
+
+
+
+
+
+
 
 
