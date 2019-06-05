@@ -193,7 +193,7 @@ To serve static files such as images, CSS files, and JavaScript files, use the `
 The function signature is:
 
 ```js
-express.static(root, [options])
+express.static(root, [options]);
 ```
 
 The `root` argument specifies the root directory from which to serve static assets.
@@ -214,7 +214,7 @@ http://localhost:3000/images/bg.png
 http://localhost:3000/hello.html
 ```
 
-**Note** Express looks up the files relative to the static directory, so the name of the static directory is not part of the URL.
+**Note:** Express looks up the files relative to the static directory, so the name of the static directory is not part of the URL.
 
 To create a virtual path prefix (where the path does not actually exist in the file system) for files that are served by the express.static function, specify a mount path for the static directory, as shown below:
 
